@@ -1,9 +1,18 @@
-let title = "Название проекта (под редакцией)";
-let screens = "Простые, Сложные, Интерактивные";
-let screenPrice = 3000;
+'use strict';
+
 let rollback = 10;
-let fullPrice = 12000;
-let adaptive = false;
+
+let title = prompt("Как называется ваш проект?")
+let screens = prompt("Какие типы экранов нужно разработать? (Простые/Сложные/Адаптивные)", "Простые")
+let screenPrice = +prompt("Сколько будет стоить данная работа?")
+let adaptive = prompt("Нужен ли адаптив на сайте? (Да/Нет)", "Нет") === "Да"
+
+let service1 = prompt("Какой дополнительный тип услуги нужен?")
+let servicePrice1 = +prompt("Сколько это будет стоить?")
+let service2 = prompt("Какой дополнительный тип услуги нужен?")
+let servicePrice2 = +prompt("Сколько это будет стоить?")
+
+
 
 console.log(typeof title, typeof fullPrice, typeof adaptive);
 console.log(screens.length);
