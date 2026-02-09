@@ -1,6 +1,5 @@
 'use strict';
 
-
 const appData = {
   title: '',
   screens: [],
@@ -13,7 +12,9 @@ const appData = {
   services: {},
 
   isNumber: function (num) {
-    return num !== null && num !== '' && !isNaN(parseFloat(num)) && isFinite(num);
+    return (
+      num !== null && num !== '' && !isNaN(parseFloat(num)) && isFinite(num)
+    );
   },
 
   asking: function () {
@@ -32,12 +33,10 @@ const appData = {
         price = prompt('Сколько будет стоить данная работа?');
       } while (!appData.isNumber(price));
 
-
-      appData.screens.push({id: i, name: name, price: price});
+      appData.screens.push({ id: i, name: name, price: price });
     }
 
     appData.adaptive = confirm('Нужен ли адаптив на сайте?');
-
 
     for (let i = 0; i < 2; i++) {
       let name;
@@ -50,7 +49,6 @@ const appData = {
         price = prompt('Сколько это будет стоить?');
       } while (!appData.isNumber(price));
 
-
       appData.services[name] = +price;
     }
   },
@@ -58,7 +56,7 @@ const appData = {
   addPrices: function () {
     appData.screenPrice = appData.screens.reduce(function (sum, screen) {
       return sum + +screen.price;
-    }, 0)
+    }, 0);
     // for (let screen of appData.screens) {
     //   appData.screenPrice += +screen.price;
     // }
@@ -85,7 +83,9 @@ const appData = {
   },
 
   getTitle: function () {
-    appData.title = appData.title.trim()[0].toUpperCase() + appData.title.trim().substring(1).toLowerCase();
+    appData.title =
+      appData.title.trim()[0].toUpperCase() +
+      appData.title.trim().substring(1).toLowerCase();
   },
 
   getServicePercentPrices: function (price, percent) {
@@ -106,7 +106,6 @@ const appData = {
     appData.getTitle();
     appData.logger();
   },
-}
+};
 
 appData.start();
-
