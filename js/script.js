@@ -17,8 +17,8 @@ const totalCountOther = document.getElementsByClassName('total-input')[2];
 const fullTotalCount = document.getElementsByClassName('total-input')[3];
 const totalCountRollback = document.getElementsByClassName('total-input')[4];
 
-let screens = document.querySelectorAll('.screen');
 
+let screens = document.querySelectorAll('.screen');
 
 const appData = {
   title: '',
@@ -29,7 +29,8 @@ const appData = {
   allServicePrices: 0,
   fullPrice: 0,
   servicePercentPrice: 0,
-  services: {},
+  servicesPercent: {},
+  servicesNumber: {},
 
   init: function () {
     appData.addTitle();
@@ -39,6 +40,7 @@ const appData = {
 
   start: function () {
     appData.addScreens();
+    appData.addServices();
     // appData.asking();
     // appData.addPrices();
     // appData.getFullPrice(appData.screenPrice, appData.allServicePrices);
@@ -52,6 +54,7 @@ const appData = {
   },
 
   addScreens: function () {
+    screens = document.querySelectorAll('.screen');
     screens.forEach(function (screen, index) {
       const select = screen.querySelector('select');
       const input = screen.querySelector('input');
@@ -63,16 +66,40 @@ const appData = {
         price: +select.value * +input.value
       });
     })
-
-    console.log(appData.screens)
+    console.log(appData.screens);
   },
 
   addScreenBlock: function () {
     const cloneScreen = screens[0].cloneNode(true);
-    
-    console.log(cloneScreen);
+    screens[screens.length - 1].after(cloneScreen);
   },
-  
+
+  addServices: function () {
+    otherItemsPercent.forEach(function (item) {
+      const check = item.querySelector('input[type=checkbox]');
+      const input = item.querySelector('input[type=text]');
+      const label = item.querySelector('label');
+      
+      console.log(check);
+      if (check.checked) {
+        appData.servicesPercent[label.textContent] = +input.value;
+      }
+    })
+
+    otherItemsNumber.forEach(function (item) {
+      const check = item.querySelector('input[type=checkbox]');
+      const input = item.querySelector('input[type=text]');
+      const label = item.querySelector('label');
+
+      console.log(check);
+      if (check.checked) {
+        appData.servicesNumber[label.textContent] = +input.value;
+      }
+    })
+    
+    console.log(appData);
+  },
+
   asking: function () {
     for (let i = 0; i < 2; i++) {
       let name;
@@ -87,6 +114,7 @@ const appData = {
 
       appData.services[name] = +price;
     }
+
   },
 
   addPrices: function () {
