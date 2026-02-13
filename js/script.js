@@ -26,6 +26,7 @@ const appData = {
   screenPrice: 0,
   count: 0,
   adaptive: true,
+  isCalculated: false,
   rollback: 10,
   servicePricesPercent: 0,
   servicePricesNumber: 0,
@@ -49,13 +50,14 @@ const appData = {
     appData.servicesPercent = {};
     appData.servicesNumber = {};
     appData.screens = [];
-    
+
     appData.addScreens();
     appData.addServices();
     appData.addPrices();
 
     appData.showResult();
 
+    appData.isCalculated = true;
     console.log(appData);
   },
 
@@ -66,6 +68,11 @@ const appData = {
   addRollback: function () {
     rangeValue.textContent = rangeInput.value + '%';
     appData.rollback = rangeInput.value;
+    
+    if (appData.isCalculated) {
+      appData.servicePercentPrice = Math.ceil(appData.fullPrice - appData.fullPrice * (+appData.rollback / 100));
+      totalCountRollback.value = appData.servicePercentPrice;
+    }
   },
 
   addScreens: function () {
@@ -130,16 +137,16 @@ const appData = {
     }
 
     appData.fullPrice = +appData.screenPrice + appData.servicePricesNumber + appData.servicePricesPercent;
-
+    
     appData.servicePercentPrice = Math.ceil(appData.fullPrice - appData.fullPrice * (+appData.rollback / 100));
   },
 
   showResult: function () {
     total.value = appData.screenPrice;
+    totalCount.value = appData.count;
     totalCountOther.value = appData.servicePricesPercent + appData.servicePricesNumber;
     fullTotalCount.value = appData.fullPrice;
     totalCountRollback.value = appData.servicePercentPrice;
-    totalCount.value = appData.count;
   },
 
   logger: function () {
