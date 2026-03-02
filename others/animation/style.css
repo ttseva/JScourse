@@ -1,0 +1,9 @@
+body {
+    background-image: url('./img/sky.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+img {
+    max-width: 200px;
+}
