@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<link href="./style.css" rel="stylesheet">
+	<script defer src="./script.js"></script>
+	<title>Entities</title>
+</head>
+
+<body>
+	<h1>Управление сущностями класса "Цветы"</h1>
+	<form>
+		<table>
+			<tr>
+				<th>Название</th>
+				<th>Цвет лепестков</th>
+				<th>Ср. высота стебля</th>
+				<th>Многолетний</th>
+				<th>Тип</th>
+				<th class="house">Температура</th>
+				<th class="house">Нужно солнце</th>
+				<th class="garden">Сезон цветения</th>
+				<th class="garden">Зимостойкий</th>
+
+			</tr>
+			<tr>
+				<td><input name="name" required type="text"></td>
+				<td><input name="color" required type="text"></td>
+				<td><input name="height" placeholder="0" required type="number"> см.</td>
+				<td><input name="is-perennial" type="checkbox"></td>
+				<td>
+					<select name="type" required>
+						<option value="">-----</option>
+						<option value="house">Комнатный</option>
+						<option value="garden">Садовый</option>
+					</select>
+				</td>
+
+				<td class="house"><input name="temperature" placeholder="0" required type="number"> °C</td>
+				<td class="house"><input name="needs-sunlight" type="checkbox"></td>
+
+				<td class="garden">
+					<select name="bloom-season" required>
+						<option value="">-----</option>
+						<option value="winter">Зима</option>
+						<option value="spring">Весна</option>
+						<option value="summer">Лето</option>
+						<option value="autumn">Осень</option>
+					</select>
+				</td>
+				<td class="garden"><input name="is-frost-resistant" type="checkbox"></td>
+			</tr>
+		</table>
+		<button id="submit" type="submit">Сохранить</button>
+	</form>
+
+	<h2>Объекты:</h2>
+	<div class="objects">
+		<p class="soon">Сейчас будет...</p>
+		<template id="object-template">
+			<table>
+				<tr>
+					<th>Название</th>
+					<th>Цвет лепестков</th>
+					<th>Ср. высота стебля</th>
+					<th>Многолетний</th>
+					<th>Тип</th>
+					<th>Удалить</th>
+				</tr>
+				<tr>
+					<td><p class="name"></p></td>
+					<td><p class="color"></p></td>
+					<td><p class="height"></p></td>
+					<td><p class="perennial"></p></td>
+					<td><p class="type"></p></td>
+					<td>
+						<button class="delete" type="button">Удалить</button>
+					</td>
+			</table>
+		</template>
+	</div>
+
+</body>
+
+</html>
